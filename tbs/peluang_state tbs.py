@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Matriks peluang transisi TBS
 transition_matrix = np.array([
@@ -27,3 +28,16 @@ for step in range(n_steps):
 
 # Format hasil agar tampil sesuai keinginan
 print(results.round(6))
+
+# Visualisasi grafik
+plt.figure(figsize=(10, 6))
+for state in results.columns:
+    plt.plot(results.index, results[state], marker='o', label=state)
+
+plt.title("Perubahan Peluang State TBS Selama 8 Langkah")
+plt.xlabel("Langkah Prediksi")
+plt.ylabel("Peluang State")
+plt.xticks(rotation=45)
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()
